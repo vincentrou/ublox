@@ -1631,6 +1631,119 @@ struct UbloxSerializer<ublox_msgs::msg::NavPOSLLH_<ContainerAllocator> > {
     stream.next(m.v_acc);
   }
 };
+template <typename ContainerAllocator>
+struct UbloxSerializer<ublox_msgs::msg::NavPVAT_<ContainerAllocator> > {
+  inline static void read(const uint8_t *data, uint32_t count,
+                          ublox_msgs::msg::NavPVAT_<ContainerAllocator> & m) {
+    UbloxIStream stream(const_cast<uint8_t *>(data), count);
+    stream.next(m.i_tow);
+    stream.next(m.version);
+    stream.next(m.valid);
+    stream.next(m.year);
+    stream.next(m.month);
+    stream.next(m.day);
+    stream.next(m.hour);
+    stream.next(m.min);
+    stream.next(m.sec);
+    stream.next(m.reserved1[0]);
+    stream.next(m.reserved1[1]);
+    stream.next(m.t_acc);
+    stream.next(m.nano);
+    stream.next(m.fix_type);
+    stream.next(m.flags);
+    stream.next(m.flags2);
+    stream.next(m.num_sv);
+    stream.next(m.lon);
+    stream.next(m.lat);
+    stream.next(m.height);
+    stream.next(m.h_msl);
+    stream.next(m.h_acc);
+    stream.next(m.v_acc);
+    stream.next(m.vel_n);
+    stream.next(m.vel_e);
+    stream.next(m.vel_d);
+    stream.next(m.g_speed);
+    stream.next(m.s_acc);
+    stream.next(m.roll);
+    stream.next(m.pitch);
+    stream.next(m.heading_vehicle);
+    stream.next(m.heading_motion);
+    stream.next(m.roll_acc);
+    stream.next(m.pitch_acc);
+    stream.next(m.heading_acc);
+    stream.next(m.mag_dec);
+    stream.next(m.mag_acc);
+    stream.next(m.ellipse_orient_err);
+    stream.next(m.ellipse_major_err);
+    stream.next(m.ellipse_minor_err);
+    stream.next(m.reserved2[0]);
+    stream.next(m.reserved2[1]);
+    stream.next(m.reserved2[2]);
+    stream.next(m.reserved2[3]);
+    stream.next(m.reserved3[0]);
+    stream.next(m.reserved3[1]);
+    stream.next(m.reserved3[2]);
+    stream.next(m.reserved3[3]);
+  }
+
+  inline static uint32_t serializedLength(const ublox_msgs::msg::NavPVAT_<ContainerAllocator> & m) {
+    (void)m;
+    return 116;
+  }
+
+  inline static void write(uint8_t *data, uint32_t size,
+                           const ublox_msgs::msg::NavPVAT_<ContainerAllocator> & m) {
+    UbloxOStream stream(data, size);
+    stream.next(m.i_tow);
+    stream.next(m.version);
+    stream.next(m.valid);
+    stream.next(m.year);
+    stream.next(m.month);
+    stream.next(m.day);
+    stream.next(m.hour);
+    stream.next(m.min);
+    stream.next(m.sec);
+    stream.next(m.reserved1[0]);
+    stream.next(m.reserved1[1]);
+    stream.next(m.t_acc);
+    stream.next(m.nano);
+    stream.next(m.fix_type);
+    stream.next(m.flags);
+    stream.next(m.flags2);
+    stream.next(m.num_sv);
+    stream.next(m.lon);
+    stream.next(m.lat);
+    stream.next(m.height);
+    stream.next(m.h_msl);
+    stream.next(m.h_acc);
+    stream.next(m.v_acc);
+    stream.next(m.vel_n);
+    stream.next(m.vel_e);
+    stream.next(m.vel_d);
+    stream.next(m.g_speed);
+    stream.next(m.s_acc);
+    stream.next(m.roll);
+    stream.next(m.pitch);
+    stream.next(m.heading_vehicle);
+    stream.next(m.heading_motion);
+    stream.next(m.roll_acc);
+    stream.next(m.pitch_acc);
+    stream.next(m.heading_acc);
+    stream.next(m.mag_dec);
+    stream.next(m.mag_acc);
+    stream.next(m.ellipse_orient_err);
+    stream.next(m.ellipse_major_err);
+    stream.next(m.ellipse_minor_err);
+    stream.next(m.reserved2[0]);
+    stream.next(m.reserved2[1]);
+    stream.next(m.reserved2[2]);
+    stream.next(m.reserved2[3]);
+    stream.next(m.reserved3[0]);
+    stream.next(m.reserved3[1]);
+    stream.next(m.reserved3[2]);
+    stream.next(m.reserved3[3]);
+  }
+};
 
 template <typename ContainerAllocator>
 struct UbloxSerializer<ublox_msgs::msg::NavPVT_<ContainerAllocator> > {

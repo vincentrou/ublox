@@ -63,6 +63,7 @@ set(msg_files
   "msg/NavDOP.msg"
   "msg/NavPOSECEF.msg"
   "msg/NavPOSLLH.msg"
+  "msg/NavPVAT.msg"
   "msg/NavPVT7.msg"
   "msg/NavPVT.msg"
   "msg/NavRELPOSNED9.msg"
