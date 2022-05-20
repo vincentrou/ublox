@@ -17,6 +17,7 @@ find_package(asio REQUIRED)
 find_package(diagnostic_msgs REQUIRED)
 find_package(diagnostic_updater REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(mavros_msgs REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
@@ -54,6 +55,7 @@ target_link_libraries(ublox_gps PUBLIC
   ${diagnostic_updater_LIBRARIES}
   ${diagnostic_msgs_TARGETS}
   ${geometry_msgs_TARGETS}
+  ${mavros_msgs_TARGETS}
   ${rcl_interfaces_TARGETS}
   rclcpp::rclcpp
   rclcpp_components::component

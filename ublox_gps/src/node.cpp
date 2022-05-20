@@ -873,6 +873,10 @@ void UbloxNode::initialize() {
   }
 }
 
+void UbloxNode::callbackRtcm(const mavros_msgs::msg::RTCM::SharedPtr msg) {
+  gps->sendRtcm(msg->data);
+}
+
 void UbloxNode::shutdown() {
   if (gps_->isInitialized()) {
     gps_->close();
