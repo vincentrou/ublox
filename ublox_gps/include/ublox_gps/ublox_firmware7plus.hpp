@@ -7,6 +7,7 @@
 #include <diagnostic_msgs/msg/diagnostic_status.hpp>
 #include <diagnostic_updater/diagnostic_updater.hpp>
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
+#include <gps_msgs/msg/gps_fix.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/nav_sat_fix.hpp>
 
@@ -43,6 +44,7 @@ class UbloxFirmware7Plus : public UbloxFirmware {
     vel_pub_ =
         node_->create_publisher<geometry_msgs::msg::TwistWithCovarianceStamped>("fix_velocity",
                                                                    1);
+    gps_fix_pub_ = node_->create_publisher<gps_msgs::msg::GPSFix>("fix_vel_att", 1);
   }
 
   /**
@@ -95,6 +97,9 @@ class UbloxFirmware7Plus : public UbloxFirmware {
       if (m.flags & m.CARRIER_PHASE_FIXED) {
         fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_GBAS_FIX;
       }
+      else if(m.flags & m.CARRIER_PHASE_FLOAT) {
+        fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_SBAS_FIX;
+      }
     } else {
       fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_NO_FIX;
     }
@@ -132,6 +137,35 @@ class UbloxFirmware7Plus : public UbloxFirmware {
     velocity.twist.covariance[cols * 3 + 3] = -1;  //  angular rate unsupported
 
     vel_pub_->publish(velocity);
+
+    gps_msgs::msg::GPSFix gps_fix;
+    gps_fix.header.stamp = fix.header.stamp;
+    gps_fix.header.frame_id = frame_id_;
+    if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_NO_FIX) {
+      gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_NO_FIX;
+    }
+    else if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_FIX) {
+      gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_FIX;
+    }
+    else if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_SBAS_FIX) {
+      gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_SBAS_FIX;
+    }
+    else if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_GBAS_FIX) {
+      gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_GBAS_FIX;
+    }
+    gps_fix.latitude = fix.latitude;
+    gps_fix.longitude = fix.longitude;
+    gps_fix.altitude = fix.altitude;
+    gps_fix.track = m.heading;
+    gps_fix.speed = m.g_speed;
+    gps_fix.climb = -m.vel_d;
+    // TODO add callback on PVAT to get roll and pitch
+    gps_fix.position_covariance[0] = var_h;
+    gps_fix.position_covariance[4] = var_h;
+    gps_fix.position_covariance[8] = var_v;
+    gps_fix.position_covariance_type =
+        sensor_msgs::msg::NavSatFix::COVARIANCE_TYPE_DIAGONAL_KNOWN;
+    gps_fix_pub_->publish(gps_fix);
 
     //
     // Update diagnostics
@@ -205,6 +239,7 @@ class UbloxFirmware7Plus : public UbloxFirmware {
   typename rclcpp::Publisher<NavPVT>::SharedPtr nav_pvt_pub_;
   rclcpp::Publisher<sensor_msgs::msg::NavSatFix>::SharedPtr fix_pub_;
   rclcpp::Publisher<geometry_msgs::msg::TwistWithCovarianceStamped>::SharedPtr vel_pub_;
+  rclcpp::Publisher<gps_msgs::msg::GPSFix>::SharedPtr gps_fix_pub_;
 
   std::string frame_id_;
   std::shared_ptr<FixDiagnostic> freq_diag_;
