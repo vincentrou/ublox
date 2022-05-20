@@ -871,6 +871,7 @@ void UbloxNode::initialize() {
     poller_ = this->create_wall_timer(std::chrono::milliseconds(static_cast<int64_t>(kPollDuration * 1000.0)),
                                       std::bind(&UbloxNode::pollMessages, this));
   }
+  rtcm_sub_ = this->create_subscription<mavros_msgs::msg::RTCM>("rtcm", 10, std::bind(&UbloxNode::callbackRtcm, this, std::placeholders::_1));
 }
 
 void UbloxNode::callbackRtcm(const mavros_msgs::msg::RTCM::SharedPtr msg) {
