@@ -141,16 +141,16 @@ class UbloxFirmware7Plus : public UbloxFirmware {
     gps_msgs::msg::GPSFix gps_fix;
     gps_fix.header.stamp = fix.header.stamp;
     gps_fix.header.frame_id = frame_id_;
-    if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_NO_FIX) {
+    if(fix.status.status == sensor_msgs::msg::NavSatStatus::STATUS_NO_FIX) {
       gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_NO_FIX;
     }
-    else if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_FIX) {
+    else if(fix.status.status == sensor_msgs::msg::NavSatStatus::STATUS_FIX) {
       gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_FIX;
     }
-    else if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_SBAS_FIX) {
+    else if(fix.status.status == sensor_msgs::msg::NavSatStatus::STATUS_SBAS_FIX) {
       gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_SBAS_FIX;
     }
-    else if(fix.status.status = sensor_msgs::msg::NavSatStatus::STATUS_GBAS_FIX) {
+    else if(fix.status.status == sensor_msgs::msg::NavSatStatus::STATUS_GBAS_FIX) {
       gps_fix.status.status = gps_msgs::msg::GPSStatus::STATUS_GBAS_FIX;
     }
     gps_fix.latitude = fix.latitude;
