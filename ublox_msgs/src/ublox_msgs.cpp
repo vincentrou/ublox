@@ -58,6 +58,8 @@ DECLARE_UBLOX_MESSAGE(ublox_msgs::Class::NAV, ublox_msgs::Message::NAV::SBAS,
                       ublox_msgs, NavSBAS)
 DECLARE_UBLOX_MESSAGE(ublox_msgs::Class::NAV, ublox_msgs::Message::NAV::SOL,
                       ublox_msgs, NavSOL)
+DECLARE_UBLOX_MESSAGE(ublox_msgs::Class::NAV, ublox_msgs::Message::NAV::PVAT,
+                      ublox_msgs, NavPVAT)
 DECLARE_UBLOX_MESSAGE(ublox_msgs::Class::NAV, ublox_msgs::Message::NAV::PVT,
                       ublox_msgs, NavPVT)
 DECLARE_UBLOX_MESSAGE(ublox_msgs::Class::NAV, ublox_msgs::Message::NAV::PVT,

@@ -39,6 +39,7 @@
 #include <ublox_msgs/msg/nav_relposned9.hpp>
 #include <ublox_msgs/msg/nav_sbas.hpp>
 #include <ublox_msgs/msg/nav_sol.hpp>
+#include <ublox_msgs/msg/nav_pvat.hpp>
 #include <ublox_msgs/msg/nav_pvt.hpp>
 #include <ublox_msgs/msg/nav_pvt7.hpp>
 #include <ublox_msgs/msg/nav_status.hpp>
@@ -162,6 +163,7 @@ namespace Message {
     static const uint8_t RELPOSNED9 = ublox_msgs::msg::NavRELPOSNED9::MESSAGE_ID;
     static const uint8_t SBAS = ublox_msgs::msg::NavSBAS::MESSAGE_ID;
     static const uint8_t SOL = ublox_msgs::msg::NavSOL::MESSAGE_ID;
+    static const uint8_t PVAT = ublox_msgs::msg::NavPVAT::MESSAGE_ID;
     static const uint8_t PVT = ublox_msgs::msg::NavPVT::MESSAGE_ID;
     static const uint8_t SAT = ublox_msgs::msg::NavSAT::MESSAGE_ID;
     static const uint8_t STATUS = ublox_msgs::msg::NavSTATUS::MESSAGE_ID;
