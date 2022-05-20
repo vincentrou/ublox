@@ -37,6 +37,7 @@
 // ROS includes
 #include <diagnostic_updater/diagnostic_updater.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <mavros_msgs/msg/rtcm.hpp>
 // U-Blox msgs nicludes
 #include <ublox_msgs/msg/cfg_cfg.hpp>
 #include <ublox_msgs/msg/cfg_dat.hpp>
@@ -196,6 +197,11 @@ class UbloxNode final : public rclcpp::Node {
    */
   void configureInf();
 
+  /**
+   * @brief Callback from RTCM msgs
+   */
+  void callbackRtcm(const mavros_msgs::msg::RTCM::SharedPtr msg);
+
   //! The u-blox node components
   /*!
    * The node will call the functions in these interfaces for each object
@@ -257,6 +263,8 @@ class UbloxNode final : public rclcpp::Node {
   rclcpp::Publisher<ublox_msgs::msg::AidALM>::SharedPtr aid_alm_pub_;
   rclcpp::Publisher<ublox_msgs::msg::AidEPH>::SharedPtr aid_eph_pub_;
   rclcpp::Publisher<ublox_msgs::msg::AidHUI>::SharedPtr aid_hui_pub_;
+
+  rclcpp::Subscription<mavros_msgs::msg::RTCM>::SharedPtr rtcm_sub_;
 
   //! Navigation rate in measurement cycles, see CfgRate.msg
   uint16_t nav_rate_{0};

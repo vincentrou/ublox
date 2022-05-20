@@ -17,6 +17,7 @@ find_package(asio REQUIRED)
 find_package(diagnostic_msgs REQUIRED)
 find_package(diagnostic_updater REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(mavros_msgs REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
@@ -51,6 +52,7 @@ ament_target_dependencies(ublox_gps
   "diagnostic_msgs"
   "diagnostic_updater"
   "geometry_msgs"
+  "mavros_msgs"
   "rcl_interfaces"
   "rclcpp"
   "rclcpp_components"
