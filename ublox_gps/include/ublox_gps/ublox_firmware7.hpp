@@ -21,10 +21,10 @@ namespace ublox_node {
 /**
  * @brief Implements functions for firmware version 7.
  */
-class UbloxFirmware7 final : public UbloxFirmware7Plus<ublox_msgs::msg::NavPVT7> {
+class UbloxFirmware7 final : public UbloxFirmware7Plus<ublox_msgs::msg::NavPVAT> {
  public:
   explicit UbloxFirmware7(const std::string & frame_id, std::shared_ptr<diagnostic_updater::Updater> updater, std::shared_ptr<FixDiagnostic> freq_diag, std::shared_ptr<Gnss> gnss, rclcpp::Node* node)
-    : UbloxFirmware7Plus<ublox_msgs::msg::NavPVT7>(frame_id, updater, freq_diag, gnss, node) {
+    : UbloxFirmware7Plus<ublox_msgs::msg::NavPVAT>(frame_id, updater, freq_diag, gnss, node) {
     if (getRosBoolean(node_, "publish.nav.svinfo")) {
       nav_svinfo_pub_ = node->create_publisher<ublox_msgs::msg::NavSVINFO>("navsvinfo", 1);
     }

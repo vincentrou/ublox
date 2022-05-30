@@ -179,7 +179,7 @@ bool UbloxFirmware7::configureUblox(std::shared_ptr<ublox_gps::Gps> gps) {
 void UbloxFirmware7::subscribe(std::shared_ptr<ublox_gps::Gps> gps) {
   // Subscribe to Nav PVT (always does so since fix information is published
   // from this)
-  gps->subscribe<ublox_msgs::msg::NavPVT7>(std::bind(
+  gps->subscribe<ublox_msgs::msg::NavPVAT>(std::bind(
         &UbloxFirmware7Plus::callbackNavPvt, this, std::placeholders::_1),
         1);
 
