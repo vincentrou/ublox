@@ -156,9 +156,9 @@ class UbloxFirmware7Plus : public UbloxFirmware {
     gps_fix.latitude = fix.latitude;
     gps_fix.longitude = fix.longitude;
     gps_fix.altitude = fix.altitude;
-    gps_fix.track = m.heading;
-    gps_fix.speed = m.g_speed;
-    gps_fix.climb = -m.vel_d;
+    gps_fix.track = -m.heading * 1e-5 * M_PI / 180.0 + M_PI_2;
+    gps_fix.speed = m.g_speed * 1e-3;
+    gps_fix.climb = -m.vel_d * 1e-3;
     // TODO add callback on PVAT to get roll and pitch
     gps_fix.position_covariance[0] = var_h;
     gps_fix.position_covariance[4] = var_h;
