@@ -1645,6 +1645,7 @@ struct UbloxSerializer<ublox_msgs::msg::NavPVAT_<ContainerAllocator> > {
     stream.next(m.hour);
     stream.next(m.min);
     stream.next(m.sec);
+    stream.next(m.reserved0);
     stream.next(m.reserved1[0]);
     stream.next(m.reserved1[1]);
     stream.next(m.t_acc);
