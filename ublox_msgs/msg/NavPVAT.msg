@@ -11,7 +11,7 @@
 #
 
 uint8 CLASS_ID = 1
-uint8 MESSAGE_ID = 17
+uint8 MESSAGE_ID = 23
 
 uint32 i_tow            # GPS Millisecond time of week [ms]
 uint8 version           # Message version (0x00 for this version)
