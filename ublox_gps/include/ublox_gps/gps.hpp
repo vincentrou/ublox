@@ -69,7 +69,7 @@ class Gps final {
   //! Sleep time [ms] after setting the baudrate
   const int kSetBaudrateSleepMs = 500;
   //! Default timeout for ACK messages in seconds
-  constexpr static double kDefaultAckTimeout = 1.0;
+  constexpr static double kDefaultAckTimeout = 10.0;
   //! Size of write buffer for output messages
   constexpr static int kWriterSize = 2056;
 
