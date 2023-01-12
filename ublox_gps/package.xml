@@ -29,6 +29,8 @@
   <depend>ublox_msgs</depend>
   <depend>ublox_serialization</depend>
 
+  <exec_depend>ntrip_client</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>
