@@ -602,7 +602,7 @@ void UbloxNode::initializeRosDiagnostics() {
 
 void UbloxNode::processMonVer() {
   ublox_msgs::msg::MonVER monVer;
-  if (!gps_->poll(monVer)) {
+  if (!gps_->poll(monVer, std::vector<uint8_t>(), std::chrono::milliseconds(100*1000))) {
     throw std::runtime_error("Failed to poll MonVER & set relevant settings");
   }
 
