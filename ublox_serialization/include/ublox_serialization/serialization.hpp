@@ -594,8 +594,7 @@ class Writer {
   bool write(const uint8_t* message, uint32_t length, uint8_t class_id,
              uint8_t message_id) {
     if (size_ < length + options_.wrapper_length()) {
-      // ROS_ERROR("u-blox write buffer overflow. Message %u / %u not written",
-      //           class_id, message_id);
+      std::cout<< "u-blox write buffer overflow. Message" << class_id << " / " << message_id << " not written" << std::endl;
       return false;
     }
     iterator start = data_;
