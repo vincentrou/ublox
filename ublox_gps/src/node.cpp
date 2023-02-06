@@ -603,7 +603,7 @@ void UbloxNode::initializeRosDiagnostics() {
 void UbloxNode::processMonVer() {
   ublox_msgs::msg::MonVER monVer;
   bool poll_monver_success{ false };
-  for(int i; i < 5; i++) {
+  for(int i=0; i < 5; ++i) {
     if (gps_->poll(monVer)) {
       poll_monver_success = true;
       break;
